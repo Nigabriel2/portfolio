@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IoT &amp; Embedded — Niyomugabo Gabriel</title>
+<meta name="description" content="Embedded systems and IoT — where the networking foundation is heading next.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-id">NiyomugaboGabriel</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-nav>Home</a></li>
+      <li><a href="skills.html" data-nav>Skills</a></li>
+      <li><a href="experience.html" data-nav>Experience</a></li>
+      <li><a href="iot.html" data-nav>IoT</a></li>
+      <li><a href="education.html" data-nav>Education</a></li>
+      <li><a href="contact.html" data-nav>Contact</a></li>
+      <li class="nav-cta-mobile"><a class="nav-cta" href="contact.html">Get in touch</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html">Get in touch</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>IoT &amp; Embedded</span></div>
+
+  <header class="page-hero">
+    <div class="eyebrow">Next hop</div>
+    <h1 class="page-title">Embedded systems &amp; IoT</h1>
+    <p class="hero-desc">Where the networking foundation is heading next.</p>
+  </header>
+
+  <section id="iot" class="reveal">
+    <div class="iot-panel">
+      <div class="iot-tag">IN PROGRESS</div>
+      <div class="iot-title">Applying networking fundamentals to microcontroller &amp; sensor-based prototypes</div>
+      <p class="iot-desc">I'm currently building small IoT/embedded projects — sensor and microcontroller prototypes that connect over the same TCP/IP and wireless fundamentals used in my network support work. Full project write-up coming soon.</p>
+    </div>
+
+    <div class="iot-diagram">
+      <div class="iot-node">SENSOR NODE<span>temp / motion / light</span></div>
+      <div class="iot-arrow">→</div>
+      <div class="iot-node">MICROCONTROLLER<span>read · process · queue</span></div>
+      <div class="iot-arrow">→</div>
+      <div class="iot-node">WIRELESS LINK<span>Wi-Fi / BLE</span></div>
+      <div class="iot-arrow">→</div>
+      <div class="iot-node">DASHBOARD<span>monitor · alert</span></div>
+    </div>
+  </section>
+
+  <section id="why" class="reveal">
+    <div class="eyebrow">Why this direction</div>
+    <h2 class="sec-title">From cabling to circuits</h2>
+    <p class="sec-intro" style="max-width:640px;">
+      Every hospital and campus network I've worked on is, underneath, a set of devices talking to each other
+      over agreed protocols. Embedded systems and IoT are the same problem at a smaller scale — a microcontroller,
+      a sensor, and a wireless link that has to stay reliable. The transition from "keeping a network up" to
+      "building the devices on it" felt like the natural next step, not a detour.
+    </p>
+  </section>
+</div>
+
+<div class="wrap">
+  <footer id="contact">
+    <div class="eyebrow">Contact</div>
+    <h2 class="footer-title">Let's get you connected.</h2>
+    <p class="footer-sub">Open to junior IT infrastructure, network support and embedded systems roles in Kigali and beyond.</p>
+    <div class="footer-actions">
+      <a class="btn btn-primary" href="contact.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>
+        Contact page
+      </a>
+      <a class="btn btn-ghost" href="tel:+250788588560">+250 788 588 560</a>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="skills.html">Skills</a>
+      <a href="experience.html">Experience</a>
+      <a href="education.html">Education</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-note">© <span data-year></span> Niyomugabo Gabriel · Kigali, Rwanda · References available on request</div>
+  </footer>
+</div>
+
+<script src="assets/script.js"></script>
+</body>
+</html>
