@@ -48,8 +48,10 @@ module.exports = async function handler(req, res) {
     return send(res, 400, { error: 'Message is too long.' });
   }
 
-  const smtpUser = process.env.GMAIL_USER;
-  const smtpPass = process.env.GMAIL_APP_PASSWORD;
+  // Trim stray whitespace and strip the spaces Google displays inside app
+  // passwords ("abcd efgh ijkl mnop") — pasting them as-is breaks SMTP auth.
+  const smtpUser = (process.env.GMAIL_USER || '').trim();
+  const smtpPass = (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '');
   if (!smtpUser || !smtpPass) {
     console.error('contact: GMAIL_USER / GMAIL_APP_PASSWORD env vars are not set');
     return send(res, 500, { error: 'The contact service is not configured yet. Please try again later.' });
@@ -70,7 +72,19 @@ module.exports = async function handler(req, res) {
     });
     return send(res, 200, { ok: true });
   } catch (err) {
-    console.error('contact: failed to send email:', err && err.message);
+    // Full detail lands in the Vercel function logs for the site owner.
+    console.error('contact: failed to send email:', {
+      code: err && err.code,
+      responseCode: err && err.responseCode,
+      message: err && err.message,
+      response: err && err.response
+    });
+    if (err && err.code === 'EAUTH') {
+      console.error('contact: EAUTH means Gmail rejected the login — verify that '
+        + 'GMAIL_APP_PASSWORD is an App Password (not the normal account password), '
+        + 'that 2-Step Verification is enabled, and that GMAIL_USER matches the '
+        + 'account the app password was created for.');
+    }
     return send(res, 502, { error: 'Could not send your message right now. Please try again later.' });
   }
 };
