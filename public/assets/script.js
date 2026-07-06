@@ -84,15 +84,17 @@
     toTop.classList.toggle('show', window.scrollY > 480);
   }, { passive:true });
 
-  /* ---- contact form (contact.html) — client-side only, no backend ---- */
+  /* ---- contact form (contact.html) — posts to the Node API ---- */
   var form = document.getElementById('contactForm');
   if(form){
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var status = document.getElementById('formStatus');
+      var submitBtn = form.querySelector('button[type="submit"]');
       var name = form.querySelector('#cf-name').value.trim();
       var email = form.querySelector('#cf-email').value.trim();
       var msg = form.querySelector('#cf-message').value.trim();
+      var honeypot = form.querySelector('#cf-company');
       if(!name || !email || !msg){
         status.textContent = 'Please fill in all fields.';
         status.classList.remove('ok');
@@ -103,11 +105,33 @@
         status.classList.remove('ok');
         return;
       }
-      var subject = encodeURIComponent('Portfolio contact from ' + name);
-      var body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
-      status.textContent = 'Opening your mail client…';
-      status.classList.add('ok');
-      window.location.href = 'mailto:niyomugabogabriel0@gmail.com?subject=' + subject + '&body=' + body;
+      submitBtn.disabled = true;
+      status.textContent = 'Sending…';
+      status.classList.remove('ok');
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: msg,
+          company: honeypot ? honeypot.value : ''
+        })
+      }).then(function(r){
+        return r.json().catch(function(){ return {}; }).then(function(data){
+          if(r.ok){
+            status.textContent = "Message sent — I'll get back to you soon.";
+            status.classList.add('ok');
+            form.reset();
+          } else {
+            status.textContent = data.error || 'Something went wrong. Please try again.';
+          }
+        });
+      }).catch(function(){
+        status.textContent = 'Network error. Please check your connection and try again.';
+      }).then(function(){
+        submitBtn.disabled = false;
+      });
     });
   }
 

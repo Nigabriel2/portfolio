@@ -52,6 +52,10 @@
     <div class="contact-grid">
       <div class="card">
         <form id="contactForm" novalidate>
+          <div class="field" style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+            <label for="cf-company">Company</label>
+            <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off">
+          </div>
           <div class="field">
             <label for="cf-name">Name</label>
             <input type="text" id="cf-name" name="name" placeholder="Your name" autocomplete="name" required>
