@@ -5,15 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Education — Niyomugabo Gabriel</title>
 <meta name="description" content="Advanced Diploma in Information Technology, high school diploma in networking, and certificates.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Education — Niyomugabo Gabriel">
+<meta property="og:description" content="Advanced Diploma in Information Technology, high school diploma in networking, and certificates.">
+<meta property="og:image" content="/assets/gabriel.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236366f1'/><stop offset='1' stop-color='%2322d3ee'/></linearGradient></defs><rect width='100' height='100' rx='24' fill='url(%23g)'/><text x='50' y='70' font-family='Arial,sans-serif' font-size='56' font-weight='bold' text-anchor='middle' fill='white'>G</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<nav class="navbar">
+<header class="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-id">NiyomugaboGabriel</a>
+    <a href="index.html" class="logo">Gabriel<span>.</span></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html" data-nav>Home</a></li>
       <li><a href="skills.html" data-nav>Skills</a></li>
@@ -21,43 +29,43 @@
       <li><a href="iot.html" data-nav>IoT</a></li>
       <li><a href="education.html" data-nav>Education</a></li>
       <li><a href="contact.html" data-nav>Contact</a></li>
-      <li class="nav-cta-mobile"><a class="nav-cta" href="contact.html">Get in touch</a></li>
+      <li class="nav-cta-mobile"><a class="btn btn-primary btn-sm" href="contact.html">Get in touch</a></li>
     </ul>
-    <a class="nav-cta" href="contact.html">Get in touch</a>
+    <a class="btn btn-primary btn-sm nav-cta-desktop" href="contact.html">Get in touch</a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
       <svg class="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
   </div>
-</nav>
+</header>
 
 <div class="wrap">
   <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Education</span></div>
 
   <header class="page-hero">
-    <div class="eyebrow">Credentials</div>
+    <span class="eyebrow">Credentials</span>
     <h1 class="page-title">Education &amp; certificates</h1>
-    <p class="hero-desc">Formal study plus the certificates picked up alongside it.</p>
+    <p class="sec-intro">Formal study plus the certificates picked up alongside it.</p>
   </header>
 
-  <section id="education" class="reveal">
+  <section id="education" class="reveal" style="padding-top:16px;">
     <div class="edu-grid">
       <div>
         <div class="edu-card">
           <div class="edu-school">RP Musanze College</div>
-          <div class="edu-degree">Advanced Diploma in Information Technology</div>
-          <div class="edu-years">2023 – 2026</div>
+          <div class="edu-degree grad-text">Advanced Diploma in Information Technology</div>
+          <div><span class="edu-years">2023 – 2026</span></div>
           <p class="edu-detail">Operating Systems · Database Management · Cryptography &amp; Network Security · IT Troubleshooting · Web Development · Data Collection &amp; Analysis.<br>Capstones: Financial Management System, Content Management System, Project Approval System.</p>
         </div>
         <div class="edu-card">
           <div class="edu-school">Giheke TVET School</div>
-          <div class="edu-degree">High School Diploma in Networking</div>
-          <div class="edu-years">2019 – 2022</div>
+          <div class="edu-degree grad-text">High School Diploma in Networking</div>
+          <div><span class="edu-years">2019 – 2022</span></div>
         </div>
       </div>
 
       <div class="edu-card">
-        <div class="edu-school" style="margin-bottom:6px;">Certificates</div>
+        <div class="edu-school">Certificates</div>
         <ul class="cert-list">
           <li><span>Work Readiness Programme — Harambee Rwanda</span><span class="cert-year">2026</span></li>
           <li><span>Web Development Basics — IBM SkillsBuild</span><span class="cert-year">2026</span></li>
@@ -69,16 +77,13 @@
   </section>
 </div>
 
-<div class="wrap">
-  <footer id="contact">
-    <div class="eyebrow">Contact</div>
+<footer>
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
     <h2 class="footer-title">Let's get you connected.</h2>
     <p class="footer-sub">Open to junior IT infrastructure, network support and embedded systems roles in Kigali and beyond.</p>
     <div class="footer-actions">
-      <a class="btn btn-primary" href="contact.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 4l8 8 8-8"/></svg>
-        Contact page
-      </a>
+      <a class="btn btn-primary" href="contact.html">Contact me</a>
       <a class="btn btn-ghost" href="tel:+250788588560">+250 788 588 560</a>
     </div>
     <div class="footer-links">
@@ -88,9 +93,9 @@
       <a href="iot.html">IoT</a>
       <a href="contact.html">Contact</a>
     </div>
-    <div class="footer-note">© <span data-year></span> Niyomugabo Gabriel · Kigali, Rwanda · References available on request</div>
-  </footer>
-</div>
+    <div class="footer-note">© <span data-year>2026</span> Niyomugabo Gabriel · Kigali, Rwanda · References available on request</div>
+  </div>
+</footer>
 
 <script src="assets/script.js"></script>
 </body>

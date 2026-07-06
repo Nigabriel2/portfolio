@@ -3,42 +3,26 @@
 // ============================================================
 (function(){
 
-  /* ---- page load bar + fade-in ---- */
-  var bar = document.createElement('div');
-  bar.className = 'load-bar';
-  document.body.appendChild(bar);
-  requestAnimationFrame(function(){ bar.style.width = '72%'; });
-  window.addEventListener('load', function(){
-    bar.style.width = '100%';
-    setTimeout(function(){ bar.classList.add('done'); }, 150);
-    document.body.classList.add('ready');
-  });
-  // fallback in case load already fired
-  if(document.readyState === 'complete'){
-    document.body.classList.add('ready');
-  }
-
   /* ---- mobile nav toggle ---- */
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   if(toggle && links){
+    var closeMenu = function(){
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    };
     toggle.addEventListener('click', function(){
       var isOpen = links.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
     links.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        links.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
+      a.addEventListener('click', closeMenu);
     });
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape' && links.classList.contains('open')){
-        links.classList.remove('open');
-        toggle.classList.remove('open');
-        toggle.setAttribute('aria-expanded', 'false');
+        closeMenu();
         toggle.focus();
       }
     });
@@ -46,30 +30,12 @@
 
   /* ---- active nav link: match current file name ---- */
   var here = (location.pathname.split('/').pop() || 'index.html');
-  if(here === '') here = 'index.html';
   document.querySelectorAll('[data-nav]').forEach(function(a){
-    var target = a.getAttribute('href');
-    if(target === here || (here === 'index.html' && target === './index.html')){
+    if(a.getAttribute('href') === here){
       a.classList.add('active');
+      a.setAttribute('aria-current', 'page');
     }
   });
-
-  /* ---- in-page scroll-spy (only relevant on index.html which has #anchors) ---- */
-  var navAnchors = Array.prototype.slice.call(document.querySelectorAll('[data-nav][href^="#"]'));
-  if(navAnchors.length){
-    var sections = navAnchors.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
-    var setActive = function(){
-      var pos = window.scrollY + 90;
-      var current = sections[0];
-      sections.forEach(function(sec){ if(sec.offsetTop <= pos){ current = sec; } });
-      if(!current) return;
-      navAnchors.forEach(function(a){
-        a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
-      });
-    };
-    document.addEventListener('scroll', setActive, { passive:true });
-    window.addEventListener('load', setActive);
-  }
 
   /* ---- scroll reveal via IntersectionObserver ---- */
   var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
@@ -87,8 +53,8 @@
     revealEls.forEach(function(el){ el.classList.add('in-view'); });
   }
 
-  /* ---- skill bar fill (skills.html) ---- */
-  var bars = document.querySelectorAll('.skill-bar-fill');
+  /* ---- proficiency bar fill (skills.html) ---- */
+  var bars = document.querySelectorAll('.bar-fill');
   if('IntersectionObserver' in window && bars.length){
     var barIo = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
@@ -128,13 +94,18 @@
       var email = form.querySelector('#cf-email').value.trim();
       var msg = form.querySelector('#cf-message').value.trim();
       if(!name || !email || !msg){
-        status.textContent = '// error: all fields are required.';
+        status.textContent = 'Please fill in all fields.';
+        status.classList.remove('ok');
+        return;
+      }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        status.textContent = 'Please enter a valid email address.';
         status.classList.remove('ok');
         return;
       }
       var subject = encodeURIComponent('Portfolio contact from ' + name);
       var body = encodeURIComponent(msg + '\n\n— ' + name + ' (' + email + ')');
-      status.textContent = '// opening mail client…';
+      status.textContent = 'Opening your mail client…';
       status.classList.add('ok');
       window.location.href = 'mailto:niyomugabogabriel0@gmail.com?subject=' + subject + '&body=' + body;
     });
